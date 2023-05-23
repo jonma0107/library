@@ -1,0 +1,9 @@
+venv
+venv/
+.venv
+/venv
+img
+/img
+img/
+__pycache__
+db.sqlite3
