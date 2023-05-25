@@ -59,14 +59,22 @@
              role="dialog"
              aria-labelledby="imageModalLabel"
              aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-primary text-white">
                         <h5 class="modal-title" id="imageModalLabel">Portada Libro</h5>
                         <button type="button"
-                                class="btn-close"
+                                class="close text-black"
                                 data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                                aria-label="Close">
+                            <i class="fas fa-eye-slash fa-2x"></i>
+                            {% comment %} <i class="fas fa-skull-crossbones fa-2x"></i> {% endcomment %}
+                            {% comment %} <i class="fas fa-times fa-2x"></i> {% endcomment %}
+                            {% comment %} <i class="fas fa-robot fa-2x"></i> {% endcomment %}
+                            {% comment %} <i class="fas fa-sun fa-2x"></i> {% endcomment %}
+                            {% comment %} <i class="fas fa-check fa-2x"></i> {% endcomment %}
+                            {% comment %} <i class="fas fa-times-circle fa-2x"></i> {% endcomment %}
+                        </button>
                     </div>
                     <div class="modal-body text-center">
                         <img src="" alt="image" class="img-fluid" id="modalImage">
