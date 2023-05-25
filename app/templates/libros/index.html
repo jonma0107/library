@@ -1,45 +1,100 @@
 {% extends 'base.html' %}
-
-{% block titulo %}Lista de Libros{% endblock titulo %}
-
+{% block titulo %}
+    Lista de Libros
+{% endblock titulo %}
 {% block contenido %}
-
-<div class="card mt-5">
-    <div class="card-header">
-        <a name="" id="" class="btn btn-success" href="{%url 'crear_libro'%}" role="button">Agregar nuevo Libro</a>
-    </div>
-    <div class="card-body">        
-        <div class="table-responsive">
-            <table class="table table-light table-hover table-bordered border-primary">
-                <thead class="table-dark text-center">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Título</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {% for libro in libros %}
-                    <tr class="text-center">
-                        <td>{{libro.id}}</td>
-                        <td>{{libro.title}}</td>
-                        <td>{{libro.image}}</td>
-                        <td>{{libro.description}}</td>
-                        <td> <a name="" id="" class="btn btn-warning" href="{%url 'editar_libro'%}" role="button">Editar</a> | <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a> </td>
-                    </tr>
-                    {% endfor %}
-                    
-                </tbody>
-            </table>
+    <div class="card mt-5">
+        <div class="card-header">
+            <a name=""
+               id=""
+               class="btn btn-success"
+               href="{% url 'crear_libro' %}"
+               role="button">Agregar nuevo Libro</a>
         </div>
-        
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-light table-hover table-bordered border-primary">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Título</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for libro in libros %}
+                            <tr class="text-center" style="vertical-align: middle;">
+                                <td>{{ libro.id }}</td>
+                                <td>{{ libro.title }}</td>
+                                <td>
+                                    <img src="{{ libro.image.url }}"
+                                         alt="image"
+                                         class="img-thumbnail image-clickable"
+                                         data-toggle="modal"
+                                         data-target="#imageModal"
+                                         style="width: 50px;
+                                                height: 50px;
+                                                cursor: pointer">
+                                </td>
+                                <td>{{ libro.description }}</td>
+                                <td>
+                                    <a name=""
+                                       id=""
+                                       class="btn btn-warning"
+                                       href="{% url 'editar_libro' %}"
+                                       role="button">Editar</a> | <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Agregar el código del modal aquí -->
+        <div class="modal fade"
+             id="imageModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="imageModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">Portada Libro</h5>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="" alt="image" class="img-fluid" id="modalImage">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        // Obtener la imagen clicada y establecerla en el modal
+        $(document).ready(function() {
+            $('.image-clickable').click(function() {
+                var imageUrl = $(this).attr('src');
+                $('#modalImage').attr('src', imageUrl);
+                $('#imageModal').modal('show');
+            });
+        }); 
+    </script>
+    {% comment %} <script>
+        // Obtener la imagen clicada y establecerla en el modal
+        $('.image-clickable').click(function() {
+            var imageURL = $(this).attr('src');
+            $('#modalImage').attr('src', imageURL);
+            $('#imageModal').modal('show');
+        });        
+    </script> {% endcomment %}
     <div class="card-footer text-muted">
         <small>&copy; Derechos Reservados</small>
     </div>
 </div>
-
 {% endblock contenido %}

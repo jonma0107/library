@@ -1,22 +1,18 @@
 {% extends 'base.html' %}
-
-{% block titulo %}Editarr un Libro{% endblock titulo %}
-
-{% block contenido %} 
-
-<div class="col-md-6 offset-md-3">
-    <div class="card mt-5">
-        <div class="card-header">
-            <h4 class="card-title text-center">Editar información del libro</h4> 
-        </div>
-        <div class="card-body">
-            <h4>Datos del libro</h4>
-            {% include 'libros/form.html' %}
-            
-        </div>
-        <div class="card-footer text-muted">
+{% block titulo %}
+    Editarr un Libro
+{% endblock titulo %}
+{% block contenido %}
+    <div class="col-md-6 offset-md-3">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h4 class="card-title text-center">Editar información del libro</h4>
+            </div>
+            <div class="card-body">
+                <h4>Datos del libro</h4>
+                {% include 'libros/form.html' %}
+            </div>
+            <div class="card-footer text-muted"></div>
         </div>
     </div>
-    </div>
-
 {% endblock contenido %}
