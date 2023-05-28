@@ -1,28 +1,35 @@
 <form enctype="multipart/form-data" action="" method="post">
     {% csrf_token %}
-
-    {% for campo in formulario %}   
-    
-    <div class="mb-3">
-        <label for="" class="form-label">{{ campo.label }}</label>
-
-        {% if campo.field.widget.input_type == 'file' and campo.value %}
-        <br/>
-        <img src="{{MEDIA_URL}}/img/{{campo.value}}" width="80" alt="" class="mx-auto d-block mb-2">
-        {% endif %}
-
-        <input type="{{campo.field.widget.input_type}}"
-        class="form-control"
-        name="{{campo.name}}"
-        id=""
-        aria-describedby="helpId"
-        placeholder="{{ campo.label }}"
-        value="{{campo.value | default:''}}">
-    </div>
-
-    <div class="col-12 help-text">{{campo.errors}}</div>
-    
+    {% for campo in formulario %}
+        <div class="mb-3">
+            <label for="" class="form-label">{{ campo.label }}</label>
+            {% if campo.field.widget.input_type == 'file' and campo.value %}
+                <br />
+                <img src="{{ MEDIA_URL }}/img/{{ campo.value }}"
+                     width="80"
+                     alt=""
+                     class="mx-auto d-block mb-2">
+            {% endif %}
+            <input type="{{ campo.field.widget.input_type }}"
+                   class="form-control"
+                   name="{{ campo.name }}"
+                   id=""
+                   aria-describedby="helpId"
+                   placeholder="{{ campo.label }}"
+                   value="{{ campo.value | default:'' }}">
+        </div>
+        <div class="col-12 help-text">{{ campo.errors }}</div>
     {% endfor %}
-    
-    <input name="" id="" class="btn btn-success" type="submit" value="Enviar Información">
+    <div class="d-flex justify-content-center gap-3">
+        <input name=""
+               id=""
+               class="btn btn-success"
+               type="submit"
+               value="Enviar Información">
+        <a name=""
+           id=""
+           class="btn btn-danger"
+           href="{% url 'libros' %}"
+           role="button">Cancelar</a>
+    </div>
 </form>
