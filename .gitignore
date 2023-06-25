@@ -6,3 +6,6 @@ img
 /img
 img/
 __pycache__
+
+.vscode/
+
